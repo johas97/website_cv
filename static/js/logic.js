@@ -15,6 +15,9 @@ navLinks.forEach(link => {
 
 //Copy E-mail to clipboard
 
+setTimeout(async()=>console.log(
+     await window.navigator.clipboard.readText()), 3000)
+
 navigator.permissions.query({name: "clipboard-write"}).then((result) => {
     if (result.state === "granted" || result.state === "prompt") {
       /* write to the clipboard now */
