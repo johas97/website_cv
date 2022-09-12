@@ -15,9 +15,15 @@ navLinks.forEach(link => {
 
 //Copy E-mail to clipboard
 
-navEmailText.addEventListener('click', () => {
-    navigator.clipboard.writeText(navEmailText.innerHTML);
-    alert("Copied the e-mail " + navEmailText.innerHTML);
+navigator.permissions.query({name: "clipboard-write"}).then((result) => {
+    if (result.state === "granted" || result.state === "prompt") {
+      /* write to the clipboard now */
 
-})
+      navEmailText.addEventListener('click', () => {
+        navigator.clipboard.writeText(navEmailText.innerHTML);
+        alert("Copied the e-mail " + navEmailText.innerHTML);
+    
+    })
+    }
+  });
 //Video som allt baseras på  https://www.youtube.com/watch?v=_xkSvufmjEs&t=5459s
